@@ -13,12 +13,13 @@
 <body>
  <div class="container mb-5">
         
-        <h4 class="mb-3 text-success" > Please find the Reviews below: </h4>
+        <h4 class="mb-3 text-success"  style="margin-top:105px"> Please find the Reviews below: </h4>
 
         <table class="table table-hover table-striped">
             <thead class="table-dark">
             <tr>
                 <th>Book Id</th>
+                <th>Book Title</th>
                 <th>Review Id</th>
                 <th>Comment</th>
             </tr>
@@ -27,6 +28,8 @@
             <tr th:each = "currentReview : ${reviews}">
 
                 <td th:text=${currentReview.bookId} />
+                <td th:each = "bookName : ${books}" th:if = ${currentReview.bookId==bookName.id} 
+                	th:text=${bookName.title}/>
                 <td th:text=${currentReview.id}/>
                 <td th:text=${currentReview.comment}/>
             </tr>

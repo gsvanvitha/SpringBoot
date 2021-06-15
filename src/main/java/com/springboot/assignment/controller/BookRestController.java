@@ -52,13 +52,16 @@ public class BookRestController {
 	}
 	 @GetMapping("/reviews")
 	    public String showAllReviews(Model theModel) throws InterruptedException {
-		 	Thread.sleep(5000);
+		 	
 	        List<Review> theReviews = bookService.findAllReviews();
 	        theModel.addAttribute("reviews", theReviews);
+	        List<Book> theBooks = bookService.findAll();
+	        theModel.addAttribute("books",theBooks);
 	        return "books/list-reviews";
 	    }
 	 @GetMapping("/showFormForAdd")
-	    public String showFormForAdd(Model theModel) {
+	    public String showFormForAdd(Model theModel) throws InterruptedException {
+		 Thread.sleep(5000);
 	        Book newBook = new Book();
 	        theModel.addAttribute("book", newBook);
 	        return "books/add-update-book-form";
@@ -97,6 +100,7 @@ public class BookRestController {
 //	        if (reviews.isEmpty())
 //	            return "reviews-not-found";
 	        theModel.addAttribute("reviews", reviews);
+	        theModel.getAttribute(bookTitle);
 	        return "books/list-reviews-bookId";
 	    }
 	    @GetMapping("/showFormToAddReview")
